@@ -91,8 +91,9 @@ class KLSummarizer(AbstractSummarizer):
         '''
         sum_val = 0
         for w in summary_freq:
-            df = doc_freq.get(w, 0.0)
-            sum_val += df * math.log(df / summary_freq[w])
+            df = doc_freq.get(w)
+            if df:
+                sum_val += df * math.log(df / summary_freq[w])
         return sum_val
 
     def _find_index_of_best_sentence(self, kls):
